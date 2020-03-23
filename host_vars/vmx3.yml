@@ -12,22 +12,37 @@ logical_interfaces:
     ipv4:
       - address: 10.254.153.1/30
     unit: 153
+    mpls:
+      state: False
+      protocol: none
   - name: ge-0/0/0
     ipv4:
       - address: 10.254.156.2/30
     unit: 156
+    mpls:
+      state: True
+      protocol: ldp
   - name: ge-0/0/0
     ipv4:
       - address: 10.254.157.2/30
     unit: 157
+    mpls:
+      state: True
+      protocol: ldp
   - name: ge-0/0/0
     ipv4:
       - address: 10.254.158.1/30
     unit: 158
+    mpls:
+      state: False
+      protocol: none
   - name: lo0
     ipv4:
       - address: 172.16.3.1/32
     unit: 0
+    mpls:
+      state: True
+      protocol: ldp
 
 router_id: 172.16.3.1
 ospf_areas:
