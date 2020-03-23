@@ -32,3 +32,26 @@ logical_interfaces:
     ipv4:
       - address: 172.16.4.1/32
     unit: 0
+
+router_id: 172.16.4.1
+ospf_areas:
+  - id: 0
+    interfaces:
+      - name: ge-0/0/0.154
+        type: p2p
+        passive: False
+      - name: ge-0/0/0.156
+        type: p2p
+        passive: False
+      - name: ge-0/0/0.160
+        type: p2p
+        passive: False
+      - name: ge-0/0/0.161
+        type: p2p
+        passive: False
+      - name: ge-0/0/0.164
+        type: p2p
+        passive: False
+      - name: lo0.0
+        type: loop
+        passive: True
