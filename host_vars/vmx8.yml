@@ -35,7 +35,7 @@ policies:
       - id: 1
         froms:
           - type: protocol
-            data: bgp
+            data: direct
         thens:
           - type: terminate
             terminating_action: accept
