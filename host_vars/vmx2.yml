@@ -63,3 +63,40 @@ ospf_areas:
       - name: lo0.0
         type: loop
         passive: True
+
+ecmp: True
+policies:
+  - name: EXPORT-CUST1
+    terms:
+      - id: 1
+        froms:
+          - type: protocol
+            data: bgp
+        thens:
+          - type: community
+            type_action: add
+            data: CUST1COMM
+          - type: terminate
+            terminating_action: accept
+      - id: 2
+        thens:
+          - type: terminate
+            terminating_action: reject
+  - name: IMPORT-CUST1
+    terms:
+      - id: 1
+        froms:
+          - type: protocol
+            data: bgp
+          - type: community
+            data: CUST1COMM
+        thens:
+          - type: terminate
+            terminating_action: accept
+      - id: 2
+        thens:
+          - type: terminate
+            terminating_action: reject
+communities:
+  - name: CUST1COMM
+    id: "target:65000:1"

@@ -27,3 +27,15 @@ logical_interfaces:
     ipv4:
       - address: 172.16.9.1/32
     unit: 0
+
+ecmp: True
+policies:
+  - name: bgp-export
+    terms:
+      - id: 1
+        froms:
+          - type: protocol
+            data: bgp
+        thens:
+          - type: terminate
+            terminating_action: accept

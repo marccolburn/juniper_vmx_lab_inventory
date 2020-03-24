@@ -73,3 +73,5 @@ ospf_areas:
       - name: lo0.0
         type: loop
         passive: True
+
+ecmp: True
