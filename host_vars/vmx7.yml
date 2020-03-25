@@ -1,4 +1,7 @@
 ansible_host: 10.1.100.167
+router_id: 172.16.7.1
+ecmp: True
+bgp_global_asn: 65000
 physical_interfaces:
   - name: ge-0/0/0
     description: Physical Interface to net_lab_int vSwitch
@@ -15,6 +18,7 @@ logical_interfaces:
     mpls:
       state: False
       protocol: none
+    routing_instance: CUST1
   - name: ge-0/0/0
     ipv4:
       - address: 10.254.161.2/30
@@ -36,6 +40,7 @@ logical_interfaces:
     mpls:
       state: False
       protocol: none
+    routing_instance: CUST1
   - name: lo0
     ipv4:
       - address: 172.16.7.1/32
@@ -44,7 +49,6 @@ logical_interfaces:
       state: True
       protocol: ldp
 
-router_id: 172.16.7.1
 ospf_areas:
   - id: 0
     interfaces:
@@ -64,7 +68,6 @@ ospf_areas:
         type: loop
         passive: True
 
-ecmp: True
 policies:
   - name: EXPORT-CUST1
     terms:
@@ -100,3 +103,29 @@ policies:
 communities:
   - name: CUST1COMM
     id: "target:65000:1"
+
+provider_ibgp:
+  group:
+    name: SP-IBGP
+    local_address: {{ router_id }}
+    import_policy: IMPORT-CUST1
+    export_policy: EXPORT-CUST1
+    asn: 65000
+    neighbors:
+      - ip: 172.16.2.1
+      - ip: 172.16.3.1
+      - ip: 172.16.6.1
+
+routing_instances:
+  - name: CUST1
+    rd: 172.16.7.1:1
+    rt: target:65000:1
+    bgp:
+      group:
+        name: cust1
+        type: external
+        neighbors:
+          - asn: 65002
+            ip: 10.254.166.2
+          - asn: 65004
+            ip: 10.254.159.2
