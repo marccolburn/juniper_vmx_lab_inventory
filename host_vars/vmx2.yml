@@ -107,7 +107,7 @@ communities:
 provider_ibgp:
   group:
     name: SP-IBGP
-    local_address: {{ router_id }}
+    local_address: "{{ router_id }}"
     import_policy: IMPORT-CUST1
     export_policy: EXPORT-CUST1
     asn: 65000
