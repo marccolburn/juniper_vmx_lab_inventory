@@ -58,12 +58,6 @@ ospf_areas:
       - name: ge-0/0/0.164
         type: p2p
         passive: False
-      - name: ge-0/0/0.165
-        type: p2p
-        passive: False
-      - name: ge-0/0/0.168
-        type: p2p
-        passive: True
       - name: lo0.0
         type: loop
         passive: True

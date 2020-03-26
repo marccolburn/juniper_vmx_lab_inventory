@@ -52,18 +52,12 @@ logical_interfaces:
 ospf_areas:
   - id: 0
     interfaces:
-      - name: ge-0/0/0.159
-        type: p2p
-        passive: True
       - name: ge-0/0/0.161
         type: p2p
         passive: False
       - name: ge-0/0/0.163
         type: p2p
         passive: False
-      - name: ge-0/0/0.166
-        type: p2p
-        passive: True
       - name: lo0.0
         type: loop
         passive: True
