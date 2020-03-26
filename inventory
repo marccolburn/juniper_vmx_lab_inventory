@@ -24,3 +24,6 @@ vmx10
 [vmx_lab:children]
 serviceprovider_lab
 ce_rtrs
+
+[localhost]
+localhost ansible_connection=local
