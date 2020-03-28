@@ -1,4 +1,6 @@
 ansible_host: 10.1.100.171
+bgp_global_asn: 65004
+router_id: 172.16.9.1
 physical_interfaces:
   - name: ge-0/0/0
     description: Physical Interface to net_lab_int vSwitch
@@ -39,3 +41,14 @@ policies:
         thens:
           - type: terminate
             terminating_action: accept
+
+bgp_groups:
+  - name: ISP
+    type: external
+    family_afi: inet
+    family_safi: unicast
+    export_policy: bgp-export
+    group_asn: 65000
+    neighbors:
+      - ip: 10.254.158.1
+      - ip: 10.254.159.1
